@@ -1,0 +1,88 @@
+@import "../../../css-config/mixins.scss";
+
+.hero-banner{
+    padding: 50px 0;
+    position: relative;
+    background-image: linear-gradient(to right, #BC3F4A, #000);
+    @include md{
+        padding: 40px 0;
+        height: calc(100vh - 80px);
+    }
+    .content{
+        height: 100%;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column-reverse;
+        align-items: center;
+        margin: 0 auto;
+        position: relative;
+        max-width: calc(100% - 20px);
+        @include md{
+            flex-direction: row;
+            max-width: 1200px;
+        }
+        .banner-img{
+            position: relative;
+            z-index: 9;
+            width: 200px;
+            margin-bottom: 130px;
+            @include md{
+                width: 500px;
+                margin-right: 60px;
+                margin-top: 50px;
+                margin-bottom: 0%;
+            }
+            @include xxl{
+                
+                margin-right: 0px;
+                margin-top: 0px;
+            }
+        }
+        .text-content{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            color: rgb(0, 0, 0);
+            @include md{
+                color: #000;
+                position: absolute;
+                left: 50px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            @include xxl{
+                left: 0%;
+            }
+            h1{
+                font-size: 50px;
+                font-weight: 700;
+                line-height: 1;
+                margin-bottom: 20px;
+                @include md{
+                    font-size: 150px;
+                }
+            }
+            .ctas{
+                display: flex;
+                justify-content: center;
+                gap: 20px; 
+                .cta{
+                    text-transform: uppercase;
+                    font-size: 13px;
+                    font-weight: 500;
+                    border: 2px solid #000000;
+                    padding: 10px 20px;
+                    cursor: pointer;
+                    &.v2{
+                        background-color: #000;
+                        color: #fff;
+                    }
+                    &:hover{
+                        opacity: 0.5;
+                    }
+                }
+            }
+
+        }
+    }
+}

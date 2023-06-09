@@ -5,13 +5,14 @@ import {AiOutlineHome} from "react-icons/ai"
 import { AiOutlineSearch } from "react-icons/ai";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
-
+import Cart from "../Cart/Cart";
 
 import "./Header.scss";
 
 const Header = () => {
     //header sticky after certain scroll
     const[scrolled , setScrolled] = useState(false)
+    const[Showcart , setShowcart] = useState(false)
     const handlescroll = ()=>{
         const offset = window.scrollY;
         if(offset > 150){
@@ -25,7 +26,8 @@ const Header = () => {
         window.addEventListener("scroll", handlescroll)
     }, [])
     return (
-        //adding class to header after certain scroll by using JS [``]
+        <>
+        {/* adding class to header after certain scroll by using JS [``] */}
         <header className={`main-header ${scrolled ? 'sticky-header' : ''}`}> 
             <div className="header-content">
                 <ul className="left">
@@ -37,13 +39,15 @@ const Header = () => {
                 <div className="right">
                     <AiOutlineSearch />
                     <AiOutlineHome />
-                    <span   className="cart-icon">
+                    <span   className="cart-icon" onClick={() => setShowcart(true)}>
                         <AiOutlineShoppingCart />
                         <span>5</span>
                     </span> 
                 </div>
             </div>
         </header>
+        {Showcart && <Cart setShowcart={setShowcart} />}
+        </>
     )
 };
 

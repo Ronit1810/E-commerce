@@ -1,6 +1,6 @@
 @import "../../css-config/mixins.scss";
 .cart-panel{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -22,6 +22,7 @@
         background: white;
         position: relative;
         z-index: 1;
+        display: flex;
         flex-direction: column;
         transform: translateX(100%);
         animation: slideCartwindow 0.5s ease forwards;
@@ -55,6 +56,70 @@
                 }
                 &:hover{
                     opacity: 0.5;
+                }
+            }
+        }
+
+        .empty-cart{
+            display: flex;
+            flex-direction: column;
+            margin-top: 100px;
+            align-items: center;
+            gap: 20px;
+            svg{
+                font-size: 120px;
+                opacity: 0.1;
+            }
+            .return-cta{
+                outline: 0;
+                border: 0;
+                height: 40px;
+                width: 150px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                font-size: 13px;
+                color: aliceblue;
+                background: #BC3F4A;
+                border-bottom: 3px solid #1e1c1c44;
+                        
+                        
+            }
+        }
+        .cart-footer{
+            border-top: 1px solid rgba($color: #000000, $alpha: 0.2);
+            .subtotal{
+                display: flex;
+                justify-content: space-between;
+                padding: 20px 15px;
+                border-bottom: 1px solid rgba($color: #000000, $alpha: 0.2);
+                .text{
+                    margin-bottom: 0;
+                    font-size: 20px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    &.total{
+                        color: #BC3F4A;
+                    }
+                }
+            }
+            .btn{
+                padding: 20px 15px;
+                .checkout-btn{
+                    outline: 0;
+                    border: 0;
+                    height: 50px;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    font-size: 16px;
+                    color: aliceblue;
+                    background-color: #BC3F4A;
+                    border-bottom: 3px solid #1e1c1c44;
+                        
                 }
             }
         }

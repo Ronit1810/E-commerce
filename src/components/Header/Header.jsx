@@ -6,6 +6,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 import Cart from "../Cart/Cart";
+import Search from "./Search/Search"
 
 import "./Header.scss";
 
@@ -13,6 +14,7 @@ const Header = () => {
     //header sticky after certain scroll
     const[scrolled , setScrolled] = useState(false)
     const[Showcart , setShowcart] = useState(false)
+    const[Searchclick , setSearchclick] = useState(false)
     const handlescroll = ()=>{
         const offset = window.scrollY;
         if(offset > 150){
@@ -37,7 +39,7 @@ const Header = () => {
                 </ul>
                 <div className="center">R O N I T.</div>
                 <div className="right">
-                    <AiOutlineSearch />
+                    <AiOutlineSearch onClick={()=> setSearchclick(true)} />
                     <AiOutlineHome />
                     <span   className="cart-icon" onClick={() => setShowcart(true)}>
                         <AiOutlineShoppingCart />
@@ -47,6 +49,7 @@ const Header = () => {
             </div>
         </header>
         {Showcart && <Cart setShowcart={setShowcart} />}
+        {Searchclick && <Search setSearchclick = {setSearchclick} />}
         </>
     )
 };

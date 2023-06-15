@@ -7,6 +7,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 
 import Cart from "../Cart/Cart";
 import Search from "./Search/Search"
+import { Context } from "../../utils/context";
 
 import "./Header.scss";
 
@@ -16,6 +17,8 @@ const Header = () => {
     const[Showcart , setShowcart] = useState(false)
     const[Searchclick , setSearchclick] = useState(false)
     const navigate = useNavigate()
+
+    const {cartCount} = useContext(Context)
 
     const handlescroll = ()=>{
         const offset = window.scrollY;
@@ -42,10 +45,10 @@ const Header = () => {
                 <div className="center" onClick={() => navigate("/")}>R O N I T.</div>
                 <div className="right">
                     <AiOutlineSearch onClick={()=> setSearchclick(true)} />
-                    <AiOutlineHome />
+                    <AiOutlineHome onClick={() => navigate("/")} />
                     <span   className="cart-icon" onClick={() => setShowcart(true)}>
                         <AiOutlineShoppingCart />
-                        <span>5</span>
+                        {!!cartCount && <span>{cartCount}</span>}
                     </span> 
                 </div>
             </div>

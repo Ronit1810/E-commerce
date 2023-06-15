@@ -1,30 +1,56 @@
 import { MdClose } from "react-icons/md";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import Prod from "../../../assets/products/watch-prod-1.webp"
+
+import useFetch from "../../../hooks/useFetch"
+
 
 import "./Search.scss";
 const Search = ({setSearchclick}) => {
+    const [query, setQuery] = useState("")
+    const navigate = useNavigate()
+
+    const onchange = (e) => {
+        setQuery(e.target.value)
+    }
+    let {data} = useFetch(`/api/products?populate=*&[filters][title][$contains]=${query}`)
+
+    if(!query.length){
+        data = null
+    }
+
     return <div className="search-model">
         <div className="form-field">
             <input 
                 type="text"
                 autoFocus
                 placeholder="Search for Product"
+                value={query}
+                onChange={onchange}
             />
             <MdClose onClick={()=> setSearchclick(false)} />
         </div>
         <div className="search-result-content">
             <div className="search-result">
-                <div className="search-result-item">
+            {data?.data?.map(item => (
+
+                <div key = {item.id} className="search-result-item" onClick={
+                    () => {
+                        navigate("/product/" + item.id);
+                        setSearchclick(false)
+                    }
+                }>
                     <div className="img-container">
-                        <img src={Prod} alt="" />
+                        <img src={process.env.REACT_APP_URL + item.attributes.img.data[0].attributes.url} alt="" />
                     </div>
                     <div className="prod-detail">
-                        <span className="name">Product Name</span>
-                        <span className="desc">Description</span>
+                        <span className="name">{item.attributes.title}</span>
+                        <span className="desc">{item.attributes.desc}</span>
                         
                     </div>
                 </div>
+            ))}
             </div>
         </div>
     </div>;
